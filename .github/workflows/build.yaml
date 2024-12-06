@@ -3,7 +3,7 @@ on: [ push ]
 env:
 #### An dieser Stelle müssen eure persönlichen Umgebungsvariablen eingetragen werden
   # Tip: Die Token/der API-Key werden als Secrets in den Repository-Settings eingetragen und hier referenziert.
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+  GITHUB_TOKEN: ${{ secrets.PET_CLINIC }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 jobs:
   compile:
@@ -24,5 +24,8 @@ jobs:
       run: |
         #### AUFGABE 3 COMPILE, DOCKER BUILD UND PUSH
           mvn package
-          docker build --tag pet-clinic:latest -f Dockerfile .
+          docker build --tag ghcr.io/carorating/pet-clinic:latest -f Dockerfile .
+          docker login -u carorating -p $GITHUB_TOKEN ghcr.io
+          docker push ghcr.io/carorating/petclinic:latest
+
 
