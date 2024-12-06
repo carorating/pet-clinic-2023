@@ -27,5 +27,6 @@ jobs:
           docker build --tag ghcr.io/carorating/pet-clinic:latest -f Dockerfile .
           docker login -u carorating -p $GITHUB_TOKEN ghcr.io
           docker push ghcr.io/carorating/petclinic:latest
+        ## prueba
 
 
